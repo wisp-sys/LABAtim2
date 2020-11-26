@@ -110,10 +110,11 @@ TIM2::CR1::CEN::Enable::Set();
 
     TIM2::CR1::URS::OverflowEvent::Set();
 
-Установим значение до которого счётчик будет считать в регистре перезагрузке *ARR*:
+Установим значение до которого счётчик будет считать в регистре перезагрузке *ARR* и также задаем делитель частоты (для *HSE* - _79000_):
 
-    const std::uint32_t timerValue = (CpuClock * 1000U) * ButPeriod - 1U;
-    TIM2::ARR::Write(timerValue);
+    const std::uint32_t timerValue = (CpuClock * 1000U) / ButPeriod - 1U;
+    TIM2::PSC::Set(7999);
+    TIM2::ARR::Write(ButPeriod);
 
 Скинем флаг генерации прерывания *UIF* по событию в регистре *SR*:
 
