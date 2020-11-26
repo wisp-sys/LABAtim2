@@ -48,6 +48,7 @@ struct RCC
     using PLLP0 = RCC_PLLCFGR_PLLP_Values<RCC::PLLCFGR, 16, 2, ReadWriteMode, RCCPLLCFGRBase> ;
     using PLLN0 = RCC_PLLCFGR_PLLN_Values<RCC::PLLCFGR, 6, 9, ReadWriteMode, RCCPLLCFGRBase> ;
     using PLLM0 = RCC_PLLCFGR_PLLM_Values<RCC::PLLCFGR, 0, 5, ReadWriteMode, RCCPLLCFGRBase> ;
+    using FieldValues = RCC_PLLCFGR_PLLM_Values<RCC::PLLCFGR, 0, 5, NoAccess, NoAccess> ;
   } ;
 
   template<typename... T> 
