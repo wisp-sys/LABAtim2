@@ -8,14 +8,12 @@ constexpr std::uint32_t CpuClock = 8'000'000U;
 auto delay_ms(std::uint32_t ButPeriod)
 {
 TIM2::CR1::URS::OverflowEvent::Set();
-const std::uint32_t timerValue = (CpuClock / 1000U) * ButPeriod - 1U;
-TIM2::PSC::Set(7999);
-TIM2::ARR::Write(ButPeriod);
+TIM2::PSC::Set(7999U);
+TIM2::ARR::Write(ButPeriod - 1U);
 TIM2::SR::UIF::NoInterruptPending::Set();
 TIM2::CNT::Write(0);
 TIM2::CR1::CEN::Enable::Set();
-
-  while (!TIM2::SR::UIF::NoInterruptPending::IsSet() )
+while (!TIM2::SR::UIF::NoInterruptPending::IsSet() )
       {
 
       }
